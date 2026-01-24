@@ -1,4 +1,4 @@
-import time, os, csv, requests, schedule
+import time, os, csv, requests, sqlite3
 from datetime import datetime
 from bs4 import BeautifulSoup
 
@@ -6,7 +6,7 @@ Columns = ['Timestamp', 'Date', 'Time', 'Occupancy' ]
 
 def scrape():
     print("Scraping Data...")
-    res = requests.get("https://recreation.rit.edu/facilityoccupancy")
+    res = requests.get("https://recwell.rit.edu/facilityoccupancy")
     status_code = res.status_code
     if status_code == 200:
         now = datetime.now()
@@ -33,4 +33,15 @@ def scrape():
     else:
         print("Scrape Failed")
 
-scrape()
+def schedule_scrape():
+    #TODO: repeat scrape so it collects data over time
+    while True:
+        scrape()
+        time.sleep()
+    return
+
+def main():
+    schedule_scrape()
+
+if __name__ == "__main__":
+    main()
