@@ -15,7 +15,7 @@ def scrape():
         time_str = now.strftime("%H:%M:%S")            # just time
 
         soup = BeautifulSoup(res.content, 'html.parser') # parse html of page
-        current_occupancy = soup.select('p > strong')[1].text.strip()
+        current_occupancy = int(soup.select('p > strong')[1].text.strip())
 
         file_exists = os.path.exists('occupancy.csv')
         
@@ -33,15 +33,11 @@ def scrape():
     else:
         print("Scrape Failed")
 
-def schedule_scrape():
-    #TODO: repeat scrape so it collects data over time
-    while True:
-        scrape()
-        time.sleep()
-    return
 
 def main():
-    schedule_scrape()
+    while True:
+        scrape()
+        time.sleep(1800)
 
 if __name__ == "__main__":
     main()
