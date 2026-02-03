@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-data_file = "synthetic_data.csv"
+data_file = "occupancy.csv"
 plot_file = "occupancy_plot.png"
 
 occupancy_df = pd.read_csv(data_file)
