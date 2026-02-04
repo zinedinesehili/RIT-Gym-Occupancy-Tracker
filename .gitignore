@@ -11,3 +11,5 @@ wheels/
 
 # generated files
 occupancy.csv
+synthetic_data.csv
+occupancy_plot.png

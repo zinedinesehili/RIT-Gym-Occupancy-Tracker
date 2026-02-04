@@ -39,8 +39,8 @@ for occupancy in occupancy_df['Occupancy']:
 
 num_days = len(occupancy_df) // 35
 
-for occupancy in average_occupancy:
-    occupancy = occupancy/num_days
+for i in range(len(average_occupancy)):
+    average_occupancy[i] = average_occupancy[i]/num_days
 
 plt.figure(figsize=(10, 5))
 plt.plot(range(35), average_occupancy)  # numeric x so ticks behave nicely

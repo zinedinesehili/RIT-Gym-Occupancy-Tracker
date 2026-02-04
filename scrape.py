@@ -1,4 +1,4 @@
-import time, os, csv, requests, sqlite3
+import time, os, csv, requests
 from datetime import datetime
 from bs4 import BeautifulSoup
 
@@ -15,11 +15,11 @@ def scrape():
         soup = BeautifulSoup(res.content, 'html.parser') # parse html of page
         current_occupancy = int(soup.select('p > strong')[1].text.strip())
 
-        file_exists = os.path.exists('occupancy.csv')
+        file_exists = os.path.exists('data/occupancy.csv')
         
-        with open ('occupancy.csv', 'w+', newline='', encoding='utf-8') as output_file:
+        with open ('occupancy.csv', 'a', newline='', encoding='utf-8') as output_file:
             dict_writer = csv.DictWriter(output_file, fieldnames=Columns)
-            if not file_exists: # write header just once
+            if output_file.tell() == 0: # write header just once
                 dict_writer.writeheader()
             dict_writer.writerow({
                 'Timestamp': timestamp,
