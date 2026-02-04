@@ -10,6 +10,7 @@ wheels/
 .venv
 
 # generated files
-occupancy.csv
-synthetic_data.csv
-occupancy_plot.png
+*.csv
+*.png
+data/
+plots/
